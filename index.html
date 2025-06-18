@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dupnisa Alabalık Tesisleri - Menü</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Genel Stil */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 25px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        /* Başlık Alanı */
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 25px;
+        }
+
+        header img {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 50%;
+            border: 3px solid #7cb342; /* Yeşil tonu */
+        }
+
+        header h1 {
+            font-family: 'Merriweather', serif;
+            color: #2e7d32; /* Koyu yeşil */
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        header p {
+            color: #666;
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        /* Menü Navigasyonu (Kategoriler) */
+        .menu-nav {
+            text-align: center;
+            margin-bottom: 30px;
+            overflow-x: auto; /* Küçük ekranlarda kaydırma */
+            white-space: nowrap; /* Menü elemanlarını tek satırda tut */
+            padding-bottom: 10px; /* Kaydırma çubuğu için boşluk */
+        }
+
+        .menu-nav button {
+            background-color: #a5d6a7; /* Açık yeşil */
+            color: #2e7d32;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 8px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: inline-block; /* Yan yana durmaları için */
+        }
+
+        .menu-nav button:hover {
+            background-color: #7cb342; /* Orta yeşil */
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .menu-nav button.active {
+            background-color: #2e7d32; /* Koyu yeşil */
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Menü Bölümleri */
+        .menu-section {
+            display: none; /* Varsayılan olarak gizli */
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .menu-section.active {
+            display: block; /* Aktif olduğunda göster */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .menu-section h2 {
+            font-family: 'Merriweather', serif;
+            color: #2e7d32;
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .menu-section h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #7cb342;
+            border-radius: 2px;
+        }
+
+        /* Menü Öğeleri */
+        .menu-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .menu-item img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 20px;
+            border: 1px solid #eee;
+        }
+
+        .item-details {
+            flex-grow: 1;
+        }
+
+        .item-details h3 {
+            font-family: 'Merriweather', serif;
+            color: #2e7d32;
+            font-size: 1.4em;
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        .item-details p {
+            font-size: 0.95em;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .item-price {
+            font-family: 'Merriweather', serif;
+            font-size: 1.3em;
+            color: #d32f2f; /* Kırmızı tonu fiyat için */
+            font-weight: 700;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            color: #777;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Duyarlı Tasarım */
+        @media (max-width: 768px) {
+            .container {
+                margin: 15px;
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            .menu-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .menu-item img {
+                margin: 0 0 15px 0;
+                width: 100%;
+                max-width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .menu-nav button {
+                padding: 8px 15px;
+                font-size: 0.9em;
+                margin: 0 5px;
+            }
+
+            .menu-section h2 {
+                font-size: 1.8em;
+            }
+
+            .item-details h3 {
+                font-size: 1.2em;
+            }
+
+            .item-price {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="logo.png" alt="Dupnisa Alabalık Tesisleri Logo">
+            <h1>Dupnisa Alabalık Tesisleri</h1>
+            <p>Doğanın Kalbinde Lezzet Durağınız</p>
+        </header>
+
+        <nav class="menu-nav">
+            <button class="active" onclick="showSection('ana-yemekler')">Ana Yemekler</button>
+            <button onclick="showSection('baliklar')">Balıklar</button>
+            <button onclick="showSection('salatalar')">Salatalar</button>
+            <button onclick="showSection('tatlilar')">Tatlılar</button>
+            <button onclick="showSection('icecekler')">İçecekler</button>
+        </nav>
+
+        <div id="ana-yemekler" class="menu-section active">
+            <h2>Ana Yemekler</h2>
+            <div class="menu-item">
+                <img src="Resimler/images.jfif" alt="Izgara Köfte">
+                <div class="item-details">
+                    <h3>Izgara Köfte</h3>
+                    <p>Özenle seçilmiş dana kıymadan hazırlanan, baharatlarla zenginleştirilmiş nefis köftelerimiz.</p>
+                    <div class="item-price">180 TL</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Resimler/SUCUK-IZGARA.jpg" alt="Izgara Köfte">
+                <div class="item-details">
+                    <h3>Izgara Sucuk</h3>
+                    <p>Özenle seçilmiş dana kıymadan hazırlanan, baharatlarla zenginleştirilmiş nefis köftelerimiz.</p>
+                    <div class="item-price">180 TL</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Resimler/tavuksote.jfif" alt="Tavuk Sote">
+                <div class="item-details">
+                    <h3>Tavuk Sote</h3>
+                    <p>Mantar, biber ve özel soslarla harmanlanmış jülyen doğranmış tavuk parçaları.</p>
+                    <div class="item-price">160 TL</div>
+                </div>
+            </div>
+            </div>
+
+        <div id="baliklar" class="menu-section">
+            <h2>Balıklar</h2>
+            <div class="menu-item">
+                <img src="Resimler/alabalik-izgara.jpg" alt="Izgara Alabalık">
+                <div class="item-details">
+                    <h3>Izgara Alabalık</h3>
+                    <p>Tesisimizin kendi çiftliğinden, günlük taze ve lezzetli alabalık. Yanında özel salata ile servis edilir.</p>
+                    <div class="item-price">220 TL</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Resimler/alabalik-tava.jpg" alt="Fırında Somon">
+                <div class="item-details">
+                    <h3>Tava Alabalık</h3>
+                    <p>Özel baharatlarla marine edilmiş, sebzelerle fırında pişirilmiş Norveç somonu.</p>
+                    <div class="item-price">350 TL</div>
+                </div>
+            </div>
+            </div>
+
+        <div id="salatalar" class="menu-section">
+            <h2>Salatalar</h2>
+            <div class="menu-item">
+                <img src="Resimler/Mevsim-Salata-1000x1000.jpg" alt="Mevsim Salata">
+                <div class="item-details">
+                    <h3>Mevsim Salata</h3>
+                    <p>Mevsimin taze yeşillikleri ve sebzeleriyle hazırlanan hafif ve sağlıklı bir seçenek.</p>
+                    <div class="item-price">75 TL</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Resimler/OBAN SALATA-1207x828.jpg" alt="Çoban Salata">
+                <div class="item-details">
+                    <h3>Çoban Salata</h3>
+                    <p>Domates, salatalık, biber, soğan ve maydanozun mükemmel uyumu.</p>
+                    <div class="item-price">65 TL</div>
+                </div>
+            </div>
+            </div>
+
+        <div id="tatlilar" class="menu-section">
+            <h2>Tatlılar</h2>
+            <div class="menu-item">
+                <img src="Resimler/images (1).jfif" alt="Fırın Sütlaç">
+                <div class="item-details">
+                    <h3>Fırın Sütlaç</h3>
+                    <p>Geleneksel tarifle hazırlanan, üzeri nar gibi kızarmış, enfes fırın sütlaç.</p>
+                    <div class="item-price">90 TL</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Resimler/dondurma-dndrm001-19.jpg" alt="Dondurma Çeşitleri">
+                <div class="item-details">
+                    <h3>Dondurma Çeşitleri</h3>
+                    <p>Çikolatalı, vanilyalı, limonlu seçenekleriyle serinletici dondurmalar.</p>
+                    <div class="item-price">70 TL</div>
+                </div>
+            </div>
+            </div>
+
+        <div id="icecekler" class="menu-section">
+            <h2>İçecekler</h2>
+            <div class="menu-item">
+                <img src="Resimler/cay.jpg" alt="Çay">
+                <div class="item-details">
+                    <h3>Çay</h3>
+                    <p>Demli ve sıcacık, yemeğinizin üzerine iyi gidecek ince belli bardakta çay.</p>
+                    <div class="item-price">25 TL</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Resimler/farkli-turk-kahvesi-cesitleriyle-tanisin.jpg" alt="Türk Kahvesi">
+                <div class="item-details">
+                    <h3>Türk Kahvesi</h3>
+                    <p>Geleneksel usulde, bol köpüklü Türk kahvesi.</p>
+                    <div class="item-price">45 TL</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Resimler/kutuicecek.jpg" alt="Kutu İçecekler">
+                <div class="item-details">
+                    <h3>Kutu İçecekler</h3>
+                    <p>Kola, Fanta, Sprite, Meyve Suyu çeşitleri.</p>
+                    <div class="item-price">50 TL</div>
+                </div>
+            </div>
+            </div>
+
+        <footer>
+            <p>&copy; <span id="current-year"></span> Dupnisa Alabalık Tesisleri. Tüm Hakları Saklıdır.</p>
+            <p>Adres: Balaban Köyü,Demirköy Kırklareli</p>
+            <p>Telefon: <a href="tel:+90288 XXX XX XX">+90 288 XXX XX XX</a> | E-posta: <a href="mailto:info@dupnisaalabalik.com">info@dupnisaalabalik.com</a></p>
+        </footer>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Tüm menü bölümlerini gizle
+            document.querySelectorAll('.menu-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Tüm navigasyon butonlarının "active" sınıfını kaldır
+            document.querySelectorAll('.menu-nav button').forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Seçilen menü bölümünü göster
+            document.getElementById(sectionId).classList.add('active');
+
+            // Tıklanan butona "active" sınıfını ekle
+            event.currentTarget.classList.add('active');
+        }
+
+        // Sayfa yüklendiğinde mevcut yılı footer'a ekle
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Sayfa yüklendiğinde ilk bölümü (Ana Yemekler) aktif yap
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.menu-nav button').click(); // İlk butona tıklamayı simüle et
+        });
+    </script>
+</body>
+</html>
